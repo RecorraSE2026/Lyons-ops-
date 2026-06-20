@@ -18,7 +18,6 @@
   --sidebar:220px;
 }
 body{font-family:'Inter',sans-serif;background:var(--off);color:var(--text);min-height:100vh;display:flex;flex-direction:column;margin:0}
-/* HEADER */
 .header{background:var(--navy);flex-shrink:0}
 .header::after{content:'';display:block;height:4px;background:linear-gradient(90deg,var(--green),var(--green-dark))}
 .header-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;gap:16px}
@@ -27,27 +26,24 @@ body{font-family:'Inter',sans-serif;background:var(--off);color:var(--text);min-
 .header-right h1{color:white;font-size:16px;font-weight:700}
 .header-right p{color:rgba(255,255,255,.38);font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-top:1px}
 .live-time{color:var(--green);font-size:11px;font-weight:600;margin-top:3px}
-/* LAYOUT */
 .layout{display:flex;flex:1;min-height:0}
-/* SIDEBAR */
 .sidebar{width:var(--sidebar);background:var(--navy-mid);flex-shrink:0;display:flex;flex-direction:column;overflow-y:auto}
 .sb-section{padding:14px 0 6px}
 .sb-lbl{font-size:9px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.28);padding:0 16px 6px}
 .sb-link{display:flex;align-items:center;gap:8px;padding:8px 16px;font-size:12px;font-weight:500;color:rgba(255,255,255,.6);text-decoration:none;transition:.15s;border-left:3px solid transparent}
 .sb-link:hover{background:rgba(255,255,255,.07);color:rgba(255,255,255,.9)}
 .sb-link.active{background:rgba(92,184,92,.15);color:white;border-left-color:var(--green);font-weight:600}
+.sb-link.sub{padding-left:32px;font-size:11.5px}
 .sb-icon{font-size:13px;width:16px;text-align:center;flex-shrink:0}
 .sb-sep{height:1px;background:rgba(255,255,255,.07);margin:4px 12px}
 .sb-bottom{margin-top:auto;padding:12px 16px;border-top:1px solid rgba(255,255,255,.07)}
 .admin-btn{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:600;color:rgba(255,255,255,.45);text-decoration:none;padding:6px 10px;border-radius:6px;border:1px solid rgba(255,255,255,.12);transition:.15s}
 .admin-btn:hover{color:white;border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.07)}
-/* CONTENT */
 .content{flex:1;overflow-y:auto;padding:24px 24px 48px;min-width:0}
 .page-hd{margin-bottom:22px}
 .eyebrow{font-size:9.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--text-light);margin-bottom:5px}
 .page-hd h2{font-size:21px;font-weight:800;color:var(--text);letter-spacing:-.02em}
 .page-hd p{font-size:12.5px;color:var(--text-mid);margin-top:4px;line-height:1.6}
-/* SECTION HDR */
 .shd{display:flex;align-items:center;gap:10px;margin-bottom:12px;margin-top:26px}
 .shd:first-of-type{margin-top:0}
 .shd h3{font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-light);white-space:nowrap}
@@ -101,7 +97,7 @@ body{font-family:'Inter',sans-serif;background:var(--off);color:var(--text);min-
 .tw-hd span{font-size:12px;font-weight:700}
 .tw-live{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.2);padding:2px 8px;border-radius:10px;animation:blink 1.8s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
-#trafficMap{width:100%;height:420px;background:#e8ecf0}
+#mapEl{width:100%;height:400px}
 .tw-links{padding:10px 15px;display:flex;gap:10px;flex-wrap:wrap;border-top:1px solid var(--border)}
 .tw-link{font-size:11.5px;font-weight:600;color:var(--green);text-decoration:none;padding:4px 10px;border:1px solid var(--green);border-radius:5px;transition:.15s}
 .tw-link:hover{background:var(--green-light)}
@@ -113,13 +109,29 @@ body{font-family:'Inter',sans-serif;background:var(--off);color:var(--text);min-
 .ext-title{font-size:13.5px;font-weight:700;color:var(--text)}
 .ext-desc{font-size:11.5px;color:var(--text-mid);line-height:1.5;flex:1}
 .ext-url{font-size:10px;color:var(--green);font-weight:600;margin-top:3px}
+/* CHOICE CARDS (big selection buttons) */
+.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:600px}
+.choice-card{background:var(--white);border:2px solid var(--border);border-radius:var(--radius);padding:28px 24px;text-decoration:none;color:inherit;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;box-shadow:var(--shadow);transition:.18s}
+.choice-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-2px)}
+.choice-card.navy-choice{border-color:var(--navy-light)}
+.choice-card.navy-choice:hover{border-color:var(--navy);background:#f4f6fc}
+.choice-card.amber-choice{border-color:var(--amber)}
+.choice-card.amber-choice:hover{border-color:#c47a10;background:var(--amber-bg)}
+.cc-icon{font-size:36px}
+.cc-title{font-size:16px;font-weight:800;color:var(--text)}
+.cc-desc{font-size:12px;color:var(--text-mid);line-height:1.55}
+.cc-btn{margin-top:6px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:7px 16px;border-radius:20px;border:none;cursor:pointer;font-family:'Inter',sans-serif}
+.navy-choice .cc-btn{background:var(--navy);color:white}
+.amber-choice .cc-btn{background:var(--amber);color:white}
 /* PLACEHOLDER */
 .ph{text-align:center;padding:56px 24px;max-width:400px;margin:0 auto}
 .ph-icon{font-size:40px;margin-bottom:14px}
 .ph h3{font-size:17px;font-weight:800;margin-bottom:7px}
 .ph p{font-size:12.5px;color:var(--text-mid);line-height:1.65}
 .ph-badge{display:inline-block;margin-top:14px;background:var(--amber);color:white;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 14px;border-radius:20px}
-/* FOOTER */
+/* INFO BOX */
+.info-box{background:var(--green-light);border:1px solid #b2dfb4;border-radius:var(--radius);padding:12px 16px;font-size:12.5px;color:var(--navy-mid);line-height:1.65;margin-bottom:20px}
+.info-box strong{font-weight:700;color:var(--green-dark)}
 .footer{background:var(--navy);color:rgba(255,255,255,.28);font-size:10.5px;text-align:center;padding:10px;flex-shrink:0}
 @media(max-width:780px){
   .layout{flex-direction:column}
@@ -127,12 +139,13 @@ body{font-family:'Inter',sans-serif;background:var(--off);color:var(--text);min-
   .sb-section{display:flex;flex-direction:row;padding:0;gap:2px}
   .sb-lbl,.sb-sep,.sb-bottom{display:none}
   .sb-link{padding:6px 10px;border-left:none;border-bottom:2px solid transparent;white-space:nowrap;font-size:11px}
+  .sb-link.sub{padding-left:10px}
   .sb-link.active{border-bottom-color:var(--green);border-left:none;background:rgba(92,184,92,.12)}
   .wdays{grid-template-columns:repeat(4,1fr)}
-  #trafficMap{height:280px}
+  #mapEl{height:260px}
+  .choice-grid{grid-template-columns:1fr}
 }
 </style>
-
 </head>
 <body>
 <header class="header">
@@ -155,15 +168,15 @@ body{font-family:'Inter',sans-serif;background:var(--off);color:var(--text);min-
   <div class="sb-section">
     <div class="sb-lbl">Driving</div>
     <a class="sb-link" href="/driving.html"><span class="sb-icon">🚛</span>Driving</a>
-    <a class="sb-link" href="/tools/driver-assessment.html"><span class="sb-icon">📝</span>Assessment Form</a>
-    <a class="sb-link" href="/training-guides.html"><span class="sb-icon">📚</span>Training Guides</a>
+    <a class="sb-link sub" href="/training-guides.html"><span class="sb-icon">📚</span>Training Guides</a>
+    <a class="sb-link sub" href="/tools/driver-assessment.html"><span class="sb-icon">📝</span>Driver Assessment</a>
   </div>
   <div class="sb-sep"></div>
   <div class="sb-section">
     <div class="sb-lbl">New Staff</div>
     <a class="sb-link" href="/new-staff.html"><span class="sb-icon">👥</span>New Staff</a>
-    <a class="sb-link" href="/tools/staff-induction.html"><span class="sb-icon">👤</span>Employee Induction</a>
-    <a class="sb-link" href="/tools/agency-induction.html"><span class="sb-icon">🏢</span>Agency Induction</a>
+    <a class="sb-link sub" href="/employed.html"><span class="sb-icon">👤</span>Employed</a>
+    <a class="sb-link sub" href="/agency.html"><span class="sb-icon">🏢</span>Agency</a>
   </div>
   <div class="sb-sep"></div>
   <div class="sb-section">
@@ -210,7 +223,7 @@ body{font-family:'Inter',sans-serif;background:var(--off);color:var(--text);min-
   </a>
   <a class="ext-card" href="https://earth.google.com/web/" target="_blank">
     <div class="ext-icon">🌍</div><div class="ext-title">Google Earth</div>
-    <div class="ext-desc">Satellite view of depots, customer sites and route planning.</div>
+    <div class="ext-desc">Satellite view of depot sites and customer locations.</div>
     <div class="ext-url">earth.google.com →</div>
   </a>
   <a class="ext-card" href="https://www.trafficengland.com/" target="_blank">

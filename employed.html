@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Home — Lyons Haulage</title>
+<title>Employed Staff Induction — Lyons Haulage</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -162,7 +162,7 @@ body{font-family:'Inter',sans-serif;background:var(--off);color:var(--text);min-
 <nav class="sidebar">
   <div class="sb-section">
     <div class="sb-lbl">Main</div>
-    <a class="sb-link active" href="/index.html"><span class="sb-icon">🏠</span>Home</a>
+    <a class="sb-link" href="/index.html"><span class="sb-icon">🏠</span>Home</a>
   </div>
   <div class="sb-sep"></div>
   <div class="sb-section">
@@ -175,7 +175,7 @@ body{font-family:'Inter',sans-serif;background:var(--off);color:var(--text);min-
   <div class="sb-section">
     <div class="sb-lbl">New Staff</div>
     <a class="sb-link" href="/new-staff.html"><span class="sb-icon">👥</span>New Staff</a>
-    <a class="sb-link sub" href="/employed.html"><span class="sb-icon">👤</span>Employed</a>
+    <a class="sb-link active sub" href="/employed.html"><span class="sb-icon">👤</span>Employed</a>
     <a class="sb-link sub" href="/agency.html"><span class="sb-icon">🏢</span>Agency</a>
   </div>
   <div class="sb-sep"></div>
@@ -189,100 +189,27 @@ body{font-family:'Inter',sans-serif;background:var(--off);color:var(--text);min-
 </nav>
 <main class="content">
 <div class="page-hd">
-  <div class="eyebrow">Lyons Haulage &middot; Barnham &amp; Selsey</div>
-  <h2>Operations Hub</h2>
-  <p>Live road conditions, weather and company notices.</p>
+  <div class="eyebrow">New Staff &middot; Employed</div>
+  <h2>Employed Staff Induction</h2>
+  <p>Complete the forms below for new permanent or fixed-term employees. Forms are completed online and emailed to operations on submission.</p>
 </div>
-<div class="shd"><h3>📌 Company Notices</h3><div class="shd-line"></div></div>
-<div class="notice-board">
-  <div class="nb-hd"><span>📌 Notice Board</span><span class="nb-live">Live</span></div>
-  <div id="noticeList">
-    <div class="notice high">
-      <div class="npin">📌</div>
-      <div><div class="ntitle">Welcome to the Lyons Haulage Operations Hub</div>
-      <div class="ntext">Driving assessments are live now. Induction forms coming soon. Use the Admin Panel to post notices here.</div>
-      <div class="ndate">Posted by Operations &middot; June 2026</div></div>
-    </div>
-  </div>
-</div>
-<div class="shd"><h3>🌤 7-Day Weather — Barnham, West Sussex</h3><div class="shd-line"></div></div>
-<div class="weather-strip">
-  <div class="wh"><span>Barnham, West Sussex</span><span class="wloc" id="wUpdated">Loading&hellip;</span></div>
-  <div class="wdays" id="wDays"><div style="grid-column:1/-1;text-align:center;padding:14px;color:var(--text-light);font-size:12px">Fetching forecast&hellip;</div></div>
-</div>
-<div class="shd"><h3>🚨 Live Road Incidents — UK Map</h3><div class="shd-line"></div></div>
-<div class="traffic-wrap">
-  <div class="tw-hd"><span>Traffic Incidents &amp; Disruptions</span><span class="tw-live">Live</span></div>
-  <div id="mapEl"></div>
-  <div class="tw-links">
-    <a class="tw-link" href="https://www.trafficengland.com/" target="_blank">🗺 Traffic England</a>
-    <a class="tw-link" href="https://www.nationalhighways.co.uk/travel-updates/" target="_blank">🚧 National Highways</a>
-    <a class="tw-link" href="https://one.network/?tm=134834057" target="_blank">📍 Barnham Area</a>
-  </div>
-</div>
-<script>
-const WI={0:'☀️',1:'🌤',2:'⛅',3:'☁️',45:'🌫',48:'🌫',51:'🌦',53:'🌦',55:'🌧',61:'🌧',63:'🌧',65:'🌧',71:'🌨',73:'🌨',75:'❄️',80:'🌦',81:'🌧',82:'🌧',95:'⛈',96:'⛈',99:'⛈'};
-const WD={0:'Clear',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Foggy',48:'Icy fog',51:'Light drizzle',53:'Drizzle',55:'Heavy drizzle',61:'Light rain',63:'Rain',65:'Heavy rain',71:'Light snow',73:'Snow',75:'Heavy snow',80:'Showers',81:'Heavy showers',82:'Violent showers',95:'Thunderstorm',96:'Storm',99:'Storm'};
-const DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-async function loadWeather(){
-  try{
-    const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=50.8284&longitude=-0.6432&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Europe/London&forecast_days=7');
-    const d=await r.json();
-    const c=document.getElementById('wDays');c.innerHTML='';
-    d.daily.time.forEach((ds,i)=>{
-      const dt=new Date(ds),code=d.daily.weathercode[i];
-      const el=document.createElement('div');
-      el.className='wd'+(i===0?' today':'');
-      el.innerHTML=`<div class="wday">${i===0?'Today':DAYS[dt.getDay()]}</div><div class="wicon">${WI[code]||'🌡'}</div><div class="wtemp">${Math.round(d.daily.temperature_2m_max[i])}° <span style="opacity:.45;font-size:9px">${Math.round(d.daily.temperature_2m_min[i])}°</span></div><div class="wdesc">${WD[code]||''}</div>`;
-      c.appendChild(el);
-    });
-    document.getElementById('wUpdated').textContent='Updated '+new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
-  }catch(e){document.getElementById('wDays').innerHTML='<div style="grid-column:1/-1;text-align:center;padding:14px;color:var(--text-light);font-size:12px">Weather unavailable</div>';}
-}
-loadWeather();setInterval(loadWeather,1800000);
-(function(){
-  const lLink=document.createElement('link');
-  lLink.rel='stylesheet';lLink.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
-  document.head.appendChild(lLink);
-  const lScript=document.createElement('script');
-  lScript.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
-  lScript.onload=function(){
-    const L=window.L;
-    const m=L.map('mapEl',{scrollWheelZoom:false}).setView([52.5,1.5],6);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenStreetMap'}).addTo(m);
-    const mkRed=L.divIcon({html:'<div style="background:#c62828;width:12px;height:12px;border-radius:50%;border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,.4)"></div>',iconSize:[12,12],className:''});
-    const mkAmber=L.divIcon({html:'<div style="background:#e8a020;width:12px;height:12px;border-radius:50%;border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,.4)"></div>',iconSize:[12,12],className:''});
-    const mkGreen=L.divIcon({html:'<div style="background:#5cb85c;width:10px;height:10px;border-radius:50%;border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,.3)"></div>',iconSize:[10,10],className:''});
-    const depot=L.divIcon({html:'<div style="background:#1c3060;color:white;font-size:10px;font-weight:700;padding:3px 7px;border-radius:4px;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,.4)"></div>',className:'',iconAnchor:[30,12]});
-    L.marker([50.828,-0.643],{icon:L.divIcon({html:'<div style="background:#1c3060;color:white;font-size:10px;font-weight:700;padding:3px 7px;border-radius:4px;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,.4)">🏭 Barnham</div>',className:'',iconAnchor:[35,12]})}).addTo(m);
-    L.marker([50.773,-0.792],{icon:L.divIcon({html:'<div style="background:#1c3060;color:white;font-size:10px;font-weight:700;padding:3px 7px;border-radius:4px;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,.4)">🏭 Selsey</div>',className:'',iconAnchor:[35,12]})}).addTo(m);
-    const alerts=[
-      {lat:51.501,lng:-0.141,sev:'red',title:'M25 J9–J10 Delay',detail:'Slow traffic both carriageways. Add 25 mins.'},
-      {lat:51.047,lng:-0.323,sev:'amber',title:'A23 Roadworks',detail:'Overnight roadworks. Single lane until 06:00.'},
-      {lat:50.854,lng:-0.128,sev:'amber',title:'A27 Brighton — congestion',detail:'Heavy traffic westbound near Hove.'},
-      {lat:52.635,lng:-1.130,sev:'red',title:'M1 J18–J19 Incident',detail:'Accident cleared, residual delays northbound.'},
-      {lat:51.745,lng:-1.255,sev:'red',title:'M40 J8–J9 Closure',detail:'Emergency carriageway closure. Follow diversion.'},
-      {lat:50.831,lng:-0.172,sev:'green',title:'A27 Worthing — clear',detail:'Normal journey times.'},
-      {lat:51.510,lng:-0.220,sev:'amber',title:'A4 Hammersmith — roadworks',detail:'Contraflow in place. Minor delays.'},
-      {lat:53.483,lng:-2.200,sev:'red',title:'M62 J18 Incident',detail:'Police incident. Two lanes closed.'},
-    ];
-    alerts.forEach(a=>{
-      const icon=a.sev==='red'?mkRed:a.sev==='amber'?mkAmber:mkGreen;
-      L.marker([a.lat,a.lng],{icon}).addTo(m).bindPopup(`<b>${a.title}</b><br><span style="font-size:11px">${a.detail}</span><br><a href="https://www.trafficengland.com/" target="_blank" style="font-size:11px;color:#5cb85c">View on Traffic England →</a>`);
-    });
-    const legend=L.control({position:'bottomright'});
-    legend.onAdd=function(){
-      const d=L.DomUtil.create('div');
-      d.style.cssText='background:white;padding:8px 12px;border-radius:8px;font-size:11px;box-shadow:0 1px 8px rgba(0,0,0,.2);line-height:1.8';
-      d.innerHTML='<b style="display:block;margin-bottom:4px">Severity</b><span style="color:#c62828">● High</span> &nbsp; <span style="color:#e8a020">● Medium</span> &nbsp; <span style="color:#5cb85c">● Clear</span><br><span style="color:#1c3060;font-weight:600">🏭 Lyons depot</span>';
-      return d;
-    };
-    legend.addTo(m);
-  };
-  document.head.appendChild(lScript);
-})();
-</script>
-</main>
+<div class="shd"><h3>Induction Forms</h3><div class="shd-line"></div></div>
+<div class="card-grid">
+  <a class="card soon" href="/tools/staff-induction.html">
+    <div class="ct navy"></div>
+    <div class="cb"><div class="ci">📋</div><div class="ctag">Induction</div>
+    <div class="ctitle">New Employee Induction Form</div>
+    <div class="cdesc">Full induction covering site rules, H&amp;S policy, cold chain responsibilities, emergency contacts and manager sign-off.</div></div>
+    <div class="cf"><div class="cstat"><span class="cdot amber"></span>Form coming soon</div></div>
+  </a>
+  <a class="card soon" href="/tools/staff-handbook-ack.html">
+    <div class="ct navy"></div>
+    <div class="cb"><div class="ci">📖</div><div class="ctag">Acknowledgement</div>
+    <div class="ctitle">Staff Handbook Acknowledgement</div>
+    <div class="cdesc">Confirms the employee has read and understood the Lyons Haulage Staff Handbook.</div></div>
+    <div class="cf"><div class="cstat"><span class="cdot grey"></span>Coming soon</div></div>
+  </a>
+</div></main>
 </div>
 <footer class="footer">Lyons Haulage Ltd &nbsp;&middot;&nbsp; Operations Hub &nbsp;&middot;&nbsp; Barnham &amp; Selsey &nbsp;&middot;&nbsp; Internal use only</footer>
 <script>
